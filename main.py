@@ -22,8 +22,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader("templates
 
 class logIn(webapp2.RequestHandler):
   def get(self):
-    username = 'Colleen'
-    password = 'pass'
+    # msg = 'hello, please log in'
+    # params = {"msg": msg}
 
     template = JINJA_ENVIRONMENT.get_template("login.html")
     self.response.out.write(template.render())
@@ -36,10 +36,10 @@ class logIn(webapp2.RequestHandler):
       template = JINJA_ENVIRONMENT.get_template("logged_in.html")
       self.response.out.write(template.render())
     else:
-      msg = 'Your username or password is wrong'
-    
-    template = JINJA_ENVIRONMENT.get_template("login.html")
-    self.response.out.write(template.render())
+      msg = 'BAD CREDENTIALS! Try again.'
+      params = {'msg': msg}
+      template = JINJA_ENVIRONMENT.get_template("login.html")
+      self.response.out.write(template.render(params))
 
 
 class loggedIn(webapp2.RequestHandler):
